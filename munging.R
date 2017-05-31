@@ -2,7 +2,7 @@ library(tidyverse)
 
 cleaner <- function(dataframe) {
   ## Replace the column names, lowercase and change spaces to underscores.
-  colnames(dataframe) <- gsub("\\(|\\)|-", '', colnames(dataframe))
+  colnames(dataframe) <- gsub("\\(|\\)|-|&", '', colnames(dataframe))
   colnames(dataframe) <- gsub(' ', '_', tolower(colnames(dataframe)))
   
   ## Date
