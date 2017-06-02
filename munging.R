@@ -8,12 +8,10 @@ cleaner <- function(dataframe) {
   ## Date
   end_year_months <- c('JANUARY', 'FEBRUARY', 'MARCH')
   
-  if (dataframe$period %in% end_year_months) {
-    dataframe$year <- sapply(strsplit(dataframe$year, '-'), '[', c(2))
-    dataframe$year <- paste0('20',dataframe$year)
-  } else {
-    dataframe$year <- sapply(strsplit(dataframe$year, '-'), '[', c(1))
-  }
+  dataframe$year <- ifelse(dataframe$period %in% end_year_months,
+         paste0('20', sapply(strsplit(hosp_act$Year, '-'), '[', c(2))),
+         sapply(strsplit(dataframe$year, '-'), '[', c(1))
+         )
   
   dataframe$period <- as.Date(paste(dataframe$year, dataframe$period, '01', sep = '-'), format = '%Y-%B-%d')
   dataframe <- dataframe[,-1]
