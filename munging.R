@@ -6,7 +6,7 @@ cleaner <- function(dataframe) {
   colnames(dataframe) <- gsub(' ', '_', tolower(colnames(dataframe)))
   
   ## Date
-  end_year_months <- c('JANUARY', 'FEBRUARY', 'MARCH')
+  end_year_months <- c('JANUARY', 'FEBRUARY', 'MARCH', 'January', 'February', 'March')
   
   dataframe$year <- ifelse(dataframe$period %in% end_year_months,
          paste0('20', sapply(strsplit(hosp_act$Year, '-'), '[', c(2))),
